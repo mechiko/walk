@@ -56,6 +56,7 @@ type Dialog struct {
 	CancelButton  **walk.PushButton
 	DefaultButton **walk.PushButton
 	FixedSize     bool
+	Borderless    bool
 }
 
 func (d Dialog) Create(owner walk.Form) error {

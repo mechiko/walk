@@ -64,9 +64,16 @@ func (d Dialog) Create(owner walk.Form) error {
 
 	if d.FixedSize {
 		w, err = walk.NewDialogWithFixedSize(owner)
+	} else if d.Borderless {
+		w, err = walk.NewBorderlessDialog(owner)
 	} else {
 		w, err = walk.NewDialog(owner)
 	}
+	// if d.FixedSize {
+	// 	w, err = walk.NewDialogWithFixedSize(owner)
+	// } else {
+	// 	w, err = walk.NewDialog(owner)
+	// }
 	if err != nil {
 		return err
 	}

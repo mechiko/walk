@@ -50,11 +50,15 @@ type Dialog struct {
 }
 
 func NewDialog(owner Form) (*Dialog, error) {
-	return newDialogWithStyle(owner, win.WS_THICKFRAME)
+	return newDialogWithStyle(owner, win.WS_THICKFRAME|win.WS_CAPTION|win.WS_SYSMENU)
 }
 
 func NewDialogWithFixedSize(owner Form) (*Dialog, error) {
-	return newDialogWithStyle(owner, 0)
+	return newDialogWithStyle(owner, win.WS_CAPTION|win.WS_SYSMENU)
+}
+
+func NewBorderlessDialog(owner Form) (*Dialog, error) {
+	return newDialogWithStyle(owner, win.WS_POPUP|win.WS_THICKFRAME)
 }
 
 func newDialogWithStyle(owner Form, style uint32) (*Dialog, error) {
@@ -68,7 +72,7 @@ func newDialogWithStyle(owner Form, style uint32) (*Dialog, error) {
 		dlg,
 		owner,
 		dialogWindowClass,
-		win.WS_CAPTION|win.WS_SYSMENU|style,
+		style,
 		0); err != nil {
 		return nil, err
 	}
@@ -88,6 +92,45 @@ func newDialogWithStyle(owner Form, style uint32) (*Dialog, error) {
 
 	return dlg, nil
 }
+// func NewDialog(owner Form) (*Dialog, error) {
+// 	return newDialogWithStyle(owner, win.WS_THICKFRAME)
+// }
+
+// func NewDialogWithFixedSize(owner Form) (*Dialog, error) {
+// 	return newDialogWithStyle(owner, 0)
+// }
+
+// func newDialogWithStyle(owner Form, style uint32) (*Dialog, error) {
+// 	dlg := &Dialog{
+// 		FormBase: FormBase{
+// 			owner: owner,
+// 		},
+// 	}
+
+// 	if err := InitWindow(
+// 		dlg,
+// 		owner,
+// 		dialogWindowClass,
+// 		win.WS_CAPTION|win.WS_SYSMENU|style,
+// 		0); err != nil {
+// 		return nil, err
+// 	}
+
+// 	succeeded := false
+// 	defer func() {
+// 		if !succeeded {
+// 			dlg.Dispose()
+// 		}
+// 	}()
+
+// 	dlg.centerInOwnerWhenRun = owner != nil
+
+// 	dlg.result = DlgCmdNone
+
+// 	succeeded = true
+
+// 	return dlg, nil
+// }
 
 func (dlg *Dialog) DefaultButton() *PushButton {
 	return dlg.defaultButton

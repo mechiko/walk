@@ -6,10 +6,8 @@ package main
 
 import (
 	"fmt"
-)
 
-import (
-	. "github.com/lxn/walk/declarative"
+	. "github.com/mechiko/walk/declarative"
 )
 
 type Foo struct {

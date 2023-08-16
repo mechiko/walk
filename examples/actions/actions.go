@@ -6,11 +6,10 @@ package main
 
 import (
 	"log"
-)
 
-import (
-	"github.com/lxn/walk"
-	. "github.com/lxn/walk/declarative"
+	"github.com/mechiko/walk"
+
+	. "github.com/mechiko/walk/declarative"
 )
 
 var isSpecialMode = walk.NewMutableCondition()

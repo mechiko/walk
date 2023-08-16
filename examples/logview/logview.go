@@ -7,11 +7,9 @@ import (
 	"errors"
 	"syscall"
 	"unsafe"
-)
 
-import (
-	"github.com/lxn/walk"
 	"github.com/lxn/win"
+	"github.com/mechiko/walk"
 )
 
 type LogView struct {
